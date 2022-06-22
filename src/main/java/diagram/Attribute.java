@@ -4,6 +4,11 @@ public class Attribute {
 	private String type = "";
 	private String name = "";
 	
+	
+	public Attribute(Attribute a) {
+		this.setName(a.getName());
+		this.setType(a.getType());
+	}
 	public String getType() {
 		return type;
 	}

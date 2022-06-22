@@ -5,6 +5,9 @@ public class Property {
 	public Property(String value) {
 		setValue(value);
 	}
+	public Property(Property p) {
+		setValue(p.getValue());
+	}
 	public String getValue() {
 		return value;
 	}

@@ -87,4 +87,27 @@ public class BClass extends Classifier {
 	public void setMemberClasses(ArrayList<BClass> pMemberClasses) {
 		memberClasses = pMemberClasses;
 	}
+	
+	@Override
+	public BClass clone() {
+		BClass clone = (BClass)super.clone();
+		
+		clone.setAttributes(new String(clone.getAttributesString()));
+		
+		clone.setMethods(new String(clone.getMethodsString()));
+		
+		ArrayList<Attribute> oldattributes = clone.getAttributes();
+		clone.setAttributes(new ArrayList<Attribute>());
+		for(Attribute a : oldattributes) {
+			clone.getAttributes().add(new Attribute(a));
+		}
+		
+		ArrayList<Method> oldmethods = clone.getMethods();
+		clone.setMethods(new ArrayList<Method>());
+		for(Method m : oldmethods) {
+			clone.getMethods().add(new Method(m));
+		}
+		
+		return clone;
+	}
 }

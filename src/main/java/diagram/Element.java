@@ -43,7 +43,14 @@ public abstract class Element implements Cloneable {
 	
 	public Element clone() {
 		try {
-			return (Element)super.clone();
+			Element e = (Element)super.clone();
+			HashMap<String, Property> oldProperties = e.getProperties();
+			e.setProperties(new HashMap<String, Property>());
+			for(String key : oldProperties.keySet()) {
+				Property p = new Property(oldProperties.get(key));
+				e.putProperty(key, p);
+			}
+			return e;
 		} catch (CloneNotSupportedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
