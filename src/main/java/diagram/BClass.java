@@ -24,6 +24,11 @@ public class BClass extends Classifier {
 		isAbstract = pAbstract;
 		isInterface = pInterface;
 	}
+	
+	BClass(Element e) {
+		this.isAbstract = ((BClass)e).getIsAbstract();
+		this.isInterface = ((BClass)e).getIsInterface();
+	}
 
 	public boolean getIsAbstract() {
 		return isAbstract;
