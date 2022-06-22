@@ -58,6 +58,7 @@ public abstract class NamedElement extends Element {
 	public NamedElement clone() {
 		NamedElement clone = (NamedElement)super.clone();
 		clone.position = position.copy();
+		clone.setName(new String(clone.getName()));
 		return clone;
 	}
 }

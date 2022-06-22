@@ -17,7 +17,7 @@ public class Diagram {
 	
 	public ArrayList<Element> createProtoTypes() {
 		ArrayList<Element> result = new ArrayList<>();
-		result.add(Prototypes.CLASS);
+		result.add(new BClass(Prototypes.CLASS));
 		result.add(Prototypes.ABSTRACTCLASS);
 		result.add(Prototypes.INTERFACE);
 		result.add(Prototypes.PACKAGE);
