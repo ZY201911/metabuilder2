@@ -223,8 +223,8 @@ public final class Clipboard
 	private void removeDanglingReferencesToParents()
 	{
 		for(NamedElement NamedElement : aNamedElements) {
-			if(NamedElement.getParent() != null && !aNamedElements.contains(NamedElement.getParent())) {
-				NamedElement.setParent(null);
+			if(NamedElement.hasParent()) {
+				NamedElement.unlink();
 			}
 		}
 	}

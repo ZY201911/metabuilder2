@@ -26,8 +26,8 @@ public abstract class Relationship extends Element {
 	@Override
 	public Relationship clone() {
 		Relationship clone = (Relationship)super.clone();
-		clone.setStart((NamedElement)clone.getStart().clone());
-		clone.setEnd((NamedElement)clone.getEnd().clone());
+//		clone.setStart((NamedElement)clone.getStart().clone());
+//		clone.setEnd((NamedElement)clone.getEnd().clone());
 		return clone;
 	}
 }
