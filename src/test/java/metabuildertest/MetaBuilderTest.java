@@ -23,9 +23,7 @@ import javafx.stage.Stage;
 import ui.EditorFrame;
 import ui.GuiUtils;
 
-public class MetaBuilderTest extends ApplicationTest {
-	Button createDiagramFromWelcomeTab;
-	
+public class MetaBuilderTest extends ApplicationTest {	
 	@Override
 	public void start(Stage pStage) throws Exception 
 	{
@@ -77,8 +75,15 @@ public class MetaBuilderTest extends ApplicationTest {
 //    }
     
     @Test
-    public void testCreationDiagramFromWelcomeTab() {
-    	createDiagramFromWelcomeTab = find("#createDiagram");
+    public void testCreateDiagramFromWelcomeTab() {
+    	Button createDiagramFromWelcomeTab = find("#createDiagram");
     	clickOn(createDiagramFromWelcomeTab);
+    }
+    
+    @Test
+    public void testCreateClass() {
+    	Button createClass = find("#createClass");
+    	clickOn(createClass);
+    	clickOn(100, 100);
     }
 }

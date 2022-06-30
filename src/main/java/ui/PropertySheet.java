@@ -61,8 +61,33 @@ public class PropertySheet extends GridPane
 		aListener = pListener;
 		aElement = pElement;
 		int row = 0;
+		Property tempProperty = aElement.getProperties().get("name");
+		if( tempProperty != null )
+		{
+			Control tempEditor = getEditorControl("name", tempProperty);
+			if( tempEditor != null )
+			{
+				add(new Label(labelName(pElement, "name")), 0, row);
+				add(tempEditor, 1, row);
+				row++;
+			}
+		}
+		tempProperty = aElement.getProperties().get("attributes");
+		if( tempProperty != null )
+		{
+			Control tempEditor = getEditorControl("attributes", tempProperty);
+			if( tempEditor != null )
+			{
+				add(new Label(labelName(pElement, "attributes")), 0, row);
+				add(tempEditor, 1, row);
+				row++;
+			}
+		}
 		for(Map.Entry<String, Property> entry : aElement.getProperties().entrySet()) {
-			Control editor = getEditorControl(entry.getValue());
+			if(entry.getKey() == "name" || entry.getKey() == "attributes") {
+				continue;
+			}
+			Control editor = getEditorControl(entry.getKey(), entry.getValue());
 			if( editor != null )
 			{
 				add(new Label(labelName(pElement, entry.getKey())), 0, row);
@@ -105,15 +130,15 @@ public class PropertySheet extends GridPane
 		return aElement;
 	}
 
-	private Control getEditorControl(Property pProperty)   
+	private Control getEditorControl(String type, Property pProperty)   
 	{
-		if( aElement instanceof BClass)
+		if(type == "name")
 		{
-			return createExtendedStringEditor(pProperty);
+			return createStringEditor(pProperty);
 		}
 		else
 		{
-			return createStringEditor(pProperty);
+			return createExtendedStringEditor(pProperty);
 		}
 	}
 	

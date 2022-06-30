@@ -17,15 +17,15 @@ public class Diagram {
 	
 	public ArrayList<Element> createProtoTypes() {
 		ArrayList<Element> result = new ArrayList<>();
-		result.add(new BClass(Prototypes.CLASS));
-		result.add(Prototypes.ABSTRACTCLASS);
-		result.add(Prototypes.INTERFACE);
-		result.add(Prototypes.PACKAGE);
-		result.add(Prototypes.DATATYPE);
-		result.add(Prototypes.ENUMERATION);
-		result.add(Prototypes.ASSOCIATION);
-		result.add(Prototypes.GENERALIZATION);
-		result.add(Prototypes.COMPOSITION);
+		result.add(new BClass(false, false));
+		result.add(new BClass(true, false));
+		result.add(new BClass(false, true));
+		result.add(new Package());
+		result.add(new DataType());
+		result.add(new Enumeration());
+		result.add(new Association());
+		result.add(new Generalization());
+		result.add(new Composition());
 		return result;
 	}
 	

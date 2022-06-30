@@ -1,5 +1,7 @@
 package diagram;
 
+import static resources.MetaBuilderResources.RESOURCES;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
