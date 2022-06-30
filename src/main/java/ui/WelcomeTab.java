@@ -75,6 +75,7 @@ public class WelcomeTab extends Tab
 		for(NewDiagramHandler handler : pNewDiagramHandlers)
 		{
 			Button newDiagramShortcut = new Button(RESOURCES.getString("metamodeldiagram" + ".text"));
+			newDiagramShortcut.setId("createDiagram");
 			newDiagramShortcut.setOnAction(handler);
 			diagramBox.getChildren().add(newDiagramShortcut);
 		}

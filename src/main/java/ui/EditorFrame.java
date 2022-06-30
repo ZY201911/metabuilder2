@@ -214,7 +214,7 @@ public class EditorFrame extends BorderPane
 						pEvent -> UserPreferences.instance().setboolean(booleanPreference.verboseToolTips, 
 								((CheckMenuItem) pEvent.getSource()).isSelected())),
 				
-				factory.createCheckMenuItem("view.autoedit_NamedElement", false, 
+				factory.createCheckMenuItem("view.autoedit_namedelement", false, 
 						UserPreferences.instance().getboolean(booleanPreference.autoEditNamedElement),
 						event -> UserPreferences.instance().setboolean(booleanPreference.autoEditNamedElement, 
 								((CheckMenuItem) event.getSource()).isSelected())),
