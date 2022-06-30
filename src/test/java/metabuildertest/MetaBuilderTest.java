@@ -92,31 +92,58 @@ public class MetaBuilderTest extends ApplicationTest {
     	
     	doubleClickOn(200, 200);
     	TextField editNameProperty = find("#nameProperty");
-    	sleep(500);
+    	sleep(250);
     	clickOn(editNameProperty).write("Person");
     	TextArea editAttriPropertyArea = find("#attributesProperty");
-    	sleep(500);
+    	sleep(250);
     	clickOn(editAttriPropertyArea).write("name:String;");
     	TextArea editMethodsPropertyArea = find("#methodsProperty");
-    	sleep(500);
+    	sleep(250);
     	clickOn(editMethodsPropertyArea).write("getName():String;");
     	clickOn("OK");
     	
     	SelectableToolButton createClass = find("#createClass");
     	clickOn(createClass);
-    	clickOn(400, 200);
+    	clickOn(200, 500);
     	
-    	doubleClickOn(400, 200);
+    	doubleClickOn(200, 500);
     	editNameProperty = find("#nameProperty");
-    	sleep(500);
+    	sleep(250);
     	clickOn(editNameProperty).write("Man");
     	clickOn("OK");
     	
     	SelectableToolButton createGeneralization = find("#createGeneralization");
     	clickOn(createGeneralization);
-    	drag(450, 250);
-    	dropTo(220, 220);
+    	drag(220, 520);
+    	dropTo(250, 250);
     	
-    	sleep(3000);
+//    	createClass = find("#createClass");
+    	clickOn(createClass);
+    	clickOn(600, 200);
+    	
+    	doubleClickOn(600, 200);
+    	editNameProperty = find("#nameProperty");
+    	sleep(250);
+    	clickOn(editNameProperty).write("Thing");
+    	clickOn("OK");
+    	
+    	SelectableToolButton createAssociation = find("#createAssociation");
+    	clickOn(createAssociation);
+    	drag(220, 220);
+    	dropTo(620, 220);
+    	
+    	doubleClickOn(420, 220);
+    	TextField editMidLabelProperty = find("#midLabelProperty");
+    	sleep(250);
+    	clickOn(editMidLabelProperty).write("own");
+    	TextField editStartLabelProperty = find("#startLabelProperty");
+    	sleep(250);
+    	clickOn(editStartLabelProperty).write("0..1");
+    	TextField editEndLabelProperty = find("#endLabelProperty");
+    	sleep(250);
+    	clickOn(editEndLabelProperty).write("0..*");
+    	clickOn("OK");
+    	
+    	sleep(5000);
     }
 }

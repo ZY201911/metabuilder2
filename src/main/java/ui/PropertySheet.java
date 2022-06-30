@@ -132,9 +132,9 @@ public class PropertySheet extends GridPane
 
 	private Control getEditorControl(String type, Property pProperty)   
 	{
-		if(type == "name")
+		if(type == "name" || type == "startLabel" || type == "midLabel" || type == "endLabel")
 		{
-			return createStringEditor("name", pProperty);
+			return createStringEditor(type, pProperty);
 		}
 		else
 		{

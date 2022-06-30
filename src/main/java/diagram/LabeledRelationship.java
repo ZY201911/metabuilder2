@@ -14,12 +14,15 @@ public abstract class LabeledRelationship extends Relationship {
 	}
 	
 	public String getStartLabel() {
+		setStartLabel(getProperties().get("startLabel").getValue());
 		return startLabel;
 	}
 	public String getEndLabel() {
+		setEndLabel(getProperties().get("endLabel").getValue());
 		return endLabel;
 	}
 	public String getMidLabel() {
+		setMidLabel(getProperties().get("midLabel").getValue());
 		return midLabel;
 	}
 	
