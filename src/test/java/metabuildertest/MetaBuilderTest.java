@@ -5,10 +5,13 @@ import static resources.MetaBuilderResources.RESOURCES;
 import java.util.Optional;
 import java.util.concurrent.TimeoutException;
 
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.*;
 
@@ -16,13 +19,17 @@ import geom.Rectangle;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import ui.EditorFrame;
 import ui.GuiUtils;
+import ui.SelectableToolButton;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class MetaBuilderTest extends ApplicationTest {	
 	@Override
 	public void start(Stage pStage) throws Exception 
@@ -75,15 +82,41 @@ public class MetaBuilderTest extends ApplicationTest {
 //    }
     
     @Test
-    public void testCreateDiagramFromWelcomeTab() {
+    public void testGraphicModeling() {
     	Button createDiagramFromWelcomeTab = find("#createDiagram");
     	clickOn(createDiagramFromWelcomeTab);
-    }
-    
-    @Test
-    public void testCreateClass() {
-    	Button createClass = find("#createClass");
+    	
+    	SelectableToolButton createAbstractClass = find("#createAbstractClass");
+    	clickOn(createAbstractClass);
+    	clickOn(200, 200);
+    	
+    	doubleClickOn(200, 200);
+    	TextField editNameProperty = find("#nameProperty");
+    	sleep(500);
+    	clickOn(editNameProperty).write("Person");
+    	TextArea editAttriPropertyArea = find("#attributesProperty");
+    	sleep(500);
+    	clickOn(editAttriPropertyArea).write("name:String;");
+    	TextArea editMethodsPropertyArea = find("#methodsProperty");
+    	sleep(500);
+    	clickOn(editMethodsPropertyArea).write("getName():String;");
+    	clickOn("OK");
+    	
+    	SelectableToolButton createClass = find("#createClass");
     	clickOn(createClass);
-    	clickOn(100, 100);
+    	clickOn(400, 200);
+    	
+    	doubleClickOn(400, 200);
+    	editNameProperty = find("#nameProperty");
+    	sleep(500);
+    	clickOn(editNameProperty).write("Man");
+    	clickOn("OK");
+    	
+    	SelectableToolButton createGeneralization = find("#createGeneralization");
+    	clickOn(createGeneralization);
+    	drag(450, 250);
+    	dropTo(220, 220);
+    	
+    	sleep(3000);
     }
 }

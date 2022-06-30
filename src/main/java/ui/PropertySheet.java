@@ -134,15 +134,32 @@ public class PropertySheet extends GridPane
 	{
 		if(type == "name")
 		{
-			return createStringEditor(pProperty);
+			return createStringEditor("name", pProperty);
 		}
 		else
 		{
-			return createExtendedStringEditor(pProperty);
+			return createExtendedStringEditor(type, pProperty);
 		}
 	}
+
+	private Control createStringEditor(String type, Property pProperty)
+	{
+		TextField textField = new TextField((String) pProperty.getValue());
+		textField.setPrefColumnCount(TEXT_FIELD_WIDTH);
+		addStereotypeDelimiterFeature(textField);
+		
+		textField.textProperty().addListener((pObservable, pOldValue, pNewValue) -> 
+		{
+			pProperty.setValue(textField.getText());
+			aListener.propertyChanged();
+		});
+		
+		textField.setId(type + "Property");
+
+		return textField;
+	}
 	
-	private Control createExtendedStringEditor(Property pProperty)
+	private Control createExtendedStringEditor(String type, Property pProperty)
 	{
 		final int rows = 5;
 		final int columns = 30;
@@ -159,6 +176,8 @@ public class PropertySheet extends GridPane
 		   pProperty.setValue(textArea.getText());
 		   aListener.propertyChanged();
 		});
+		
+		textArea.setId(type + "Property");
 		
 		return new ScrollPane(textArea);
 	}
@@ -220,21 +239,6 @@ public class PropertySheet extends GridPane
 	            textAreaSource.fireEvent(tabControlEvent);
 	        }
 	    });
-	}
-	
-	private Control createStringEditor(Property pProperty)
-	{
-		TextField textField = new TextField((String) pProperty.getValue());
-		textField.setPrefColumnCount(TEXT_FIELD_WIDTH);
-		addStereotypeDelimiterFeature(textField);
-		
-		textField.textProperty().addListener((pObservable, pOldValue, pNewValue) -> 
-		{
-			pProperty.setValue(textField.getText());
-			aListener.propertyChanged();
-		});
-
-		return textField;
 	}
 }
 
