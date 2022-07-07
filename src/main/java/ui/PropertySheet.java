@@ -1,13 +1,20 @@
 package ui;
 
 import static resources.MetaBuilderResources.RESOURCES;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import diagram.Element;
 import diagram.Property;
 import diagram.BClass;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -136,6 +143,9 @@ public class PropertySheet extends GridPane
 		{
 			return createStringEditor(type, pProperty);
 		}
+		if(type == "direction") {
+			return createComBoxEditor(type, pProperty);
+		}
 		else
 		{
 			return createExtendedStringEditor(type, pProperty);
@@ -180,6 +190,31 @@ public class PropertySheet extends GridPane
 		textArea.setId(type + "Property");
 		
 		return new ScrollPane(textArea);
+	}
+	
+	private Control createComBoxEditor(String type, Property pProperty)
+	{
+		List<String> directionList = Arrays.asList("NoDirection", "UniDirection", "BiDirection");
+		final ComboBox<String> comboBox = new ComboBox<>(FXCollections.observableArrayList(directionList));
+		
+		if(pProperty.getValue() == "NoDirection") {
+			comboBox.getSelectionModel().select(0);
+		}
+		else if(pProperty.getValue() == "UniDirection") {
+			comboBox.getSelectionModel().select(1);
+		}
+		else if(pProperty.getValue() == "BiDirection") {
+			comboBox.getSelectionModel().select(2);
+		}
+		comboBox.valueProperty().addListener((pObservable, pOldValue, pNewValue) -> 
+		{
+			pProperty.setValue(pNewValue);
+			aListener.propertyChanged();
+		});
+		
+		comboBox.setId(type + "Property");
+	
+		return comboBox;
 	}
 	
 	/*

@@ -112,7 +112,7 @@ public class EnumerationViewer extends AbstractNamedElementViewer
 	protected String getNameText(Enumeration pNamedElement)
 	{
 		assert pNamedElement != null;
-		return pNamedElement.getName();
+		return "enumeration\n" + pNamedElement.getName();
 	}
 }
 

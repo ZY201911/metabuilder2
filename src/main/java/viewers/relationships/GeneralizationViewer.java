@@ -25,6 +25,6 @@ public final class GeneralizationViewer extends SegmentedRelationshipViewer
 	 */
 	private static LineStyle getLineStyle(Generalization pRelationship)
 	{
-		return LineStyle.DOTTED;
+		return LineStyle.SOLID;
 	}
 }

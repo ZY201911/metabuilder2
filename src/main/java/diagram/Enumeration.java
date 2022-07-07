@@ -13,6 +13,7 @@ public class Enumeration extends DataType {
 	}
 	
 	public String getLiteralsString() {
+		setLiteralsString(getProperties().get("literals").getValue());
 		return literalsString;
 	}
 	public ArrayList<String> getLiterals() {

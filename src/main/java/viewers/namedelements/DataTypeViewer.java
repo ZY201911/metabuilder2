@@ -91,7 +91,7 @@ public class DataTypeViewer extends AbstractNamedElementViewer
 	protected String getNameText(DataType pNamedElement)
 	{
 		assert pNamedElement != null;
-		return pNamedElement.getName();
+		return "datatype\n" + pNamedElement.getName();
 	}
 }
 
