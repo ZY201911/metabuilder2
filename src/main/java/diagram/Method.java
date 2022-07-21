@@ -16,6 +16,13 @@ public class Method {
 			this.getParameters().add(new Attribute(a));
 		}
 	}
+	
+	public Method(String pType, String pName, ArrayList<Attribute> pParameters) {
+		this.setType(pType);
+		this.setName(pName);
+		this.setParameters(pParameters);
+	}
+	
 	public String getType() {
 		return type;
 	}

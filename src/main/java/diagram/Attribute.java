@@ -9,6 +9,10 @@ public class Attribute {
 		this.setName(a.getName());
 		this.setType(a.getType());
 	}
+	public Attribute(String pName, String pType) {
+		this.setName(pName);
+		this.setType(pType);
+	}
 	public String getType() {
 		return type;
 	}

@@ -15,9 +15,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.*;
 
+import com.jfinal.template.stat.Ctrl;
+
 import geom.Rectangle;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
@@ -84,8 +88,8 @@ public class MetaBuilderTest extends ApplicationTest {
 //        release(new MouseButton[] {});
 //    }
     
-    @Test
-    @Order(2)
+//    @Test
+//    @Order(2)
     public void testUseCase() {
     	int useCase_x = 850;
     	int useCase_y = 250;
@@ -350,8 +354,8 @@ public class MetaBuilderTest extends ApplicationTest {
     	sleep(8000);
     }
     
-    @Test
-    @Order(1)
+//    @Test
+//    @Order(1)
     public void testBasicFamily() {
     	int family_x = 100;
     	int family_y = 100;
@@ -453,6 +457,59 @@ public class MetaBuilderTest extends ApplicationTest {
     	
     	drag(woman_x + padding_x, woman_y + padding_y);
     	dropTo(person_x + padding_x, person_y + padding_y);
+    	
+    	sleep(5000);
+    }
+    
+    @Test
+    public void testXmlEncoder() {
+    	int padding_x = 20;
+    	int padding_y = 10;
+    	
+    	int family_x = 100;
+    	int family_y = 100;
+    	
+    	int package1_x = 600;
+    	int package1_y = 100;
+    	
+    	int man_x = package1_x + padding_x;
+    	int man_y = package1_y + padding_y;
+    	
+    	
+    	Button createDiagram = find("#createDiagram");
+    	clickOn(createDiagram);
+    	
+    	SelectableToolButton createClass = find("#createClass");
+    	clickOn(createClass);
+    	
+    	clickOn(family_x, family_y);
+    	doubleClickOn(family_x, family_y);
+    	TextField editNameProperty = find("#nameProperty");
+    	clickOn(editNameProperty).write("Family");
+    	TextArea editAttriProperty = find("#attributesProperty");
+    	clickOn(editAttriProperty).write("name:String;\nage:Number;\naddress:String");
+    	TextArea editMethodProperty = find("#methodsProperty");
+    	clickOn(editMethodProperty).write("family1(name:String,age:Number):void;\nfamily2(name:String,age:Number,address:String):void;");
+    	clickOn("OK");
+    	
+    	SelectableToolButton createPackage = find("#createPackage");
+    	clickOn(createPackage);
+    	
+    	clickOn(package1_x, package1_y);
+    	doubleClickOn(package1_x, package1_y);
+    	editNameProperty = find("#nameProperty");
+    	clickOn(editNameProperty).write("Person");
+    	clickOn("OK");
+    	
+    	clickOn(createClass);
+    	clickOn(man_x, man_y);
+    	doubleClickOn(man_x, man_y);
+    	editNameProperty = find("#nameProperty");
+    	clickOn(editNameProperty).write("Man");
+    	clickOn("OK");
+    	
+    	press(KeyCode.CONTROL, KeyCode.S);
+    	release(KeyCode.S, KeyCode.CONTROL);
     	
     	sleep(5000);
     }

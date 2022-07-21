@@ -51,7 +51,7 @@ public final class PersistenceService
 //		{
 //			out.println(JsonEncoder.encode(pDiagram).toString());
 //		}
-//		XmlEncoder.encode(pDiagram, pFile);
+		XmlEncoder.encode(pDiagram, pFile);
 	}
 	
 	/**
