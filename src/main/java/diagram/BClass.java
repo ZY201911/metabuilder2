@@ -20,7 +20,7 @@ public class BClass extends Classifier {
 		putProperty("methods", new Property(""));
 	}
 	
-	BClass(boolean pAbstract, boolean pInterface) {
+	public BClass(boolean pAbstract, boolean pInterface) {
 		isAbstract = pAbstract;
 		isInterface = pInterface;
 	}

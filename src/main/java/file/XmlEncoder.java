@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 
-import metabuilder.MetaBuilder;
 import diagram.Association;
 import diagram.Attribute;
 import diagram.BClass;
@@ -20,17 +19,12 @@ import diagram.Property;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
-
-import com.jfinal.template.stat.ast.For;
-import com.jfinal.template.stat.ast.If;
 
 /**
  * Converts a graph to Xml notation. The notation includes:
@@ -141,8 +135,10 @@ public final class XmlEncoder
 
 	private static void encodeRelationships(AbstractContext pContext, Element curElement)
 	{
+		Element tmpElement = curElement;
 		for( Relationship relationship : pContext.pDiagram().getRelationships() )
 		{
+			curElement = tmpElement;
 			if(relationship.getStart().hasParent()) {
 				curElement = (Element)document.selectSingleNode("//packagedElement[@id='" + pContext.getId(relationship.getStart()) + "']");
 			}
@@ -217,25 +213,28 @@ public final class XmlEncoder
 		tempProperty = pProperties.get("literals");
 		if( tempProperty != null && tempProperty.getValue() != "")
 		{
-			Element aElement = curElement.addElement("ownedLiteral");
-			aElement.addAttribute("name", tempProperty.getValue());
+			ArrayList<String> attrList = tempProperty.splitAsLiterals();
+			for(String attr : attrList) {
+				Element aElement = curElement.addElement("ownedLiteral");
+				aElement.addAttribute("value", attr);
+			}
 		}
 		tempProperty = pProperties.get("startLabel");
-		if( tempProperty != null && tempProperty.getValue() != "")
-		{
-			Element aElement = curElement.addElement("upperValue");
-			aElement.addAttribute("value", tempProperty.getValue());
-		}
-		tempProperty = pProperties.get("endLabel");
 		if( tempProperty != null && tempProperty.getValue() != "")
 		{
 			Element aElement = curElement.addElement("lowerValue");
 			aElement.addAttribute("value", tempProperty.getValue());
 		}
+		tempProperty = pProperties.get("endLabel");
+		if( tempProperty != null && tempProperty.getValue() != "")
+		{
+			Element aElement = curElement.addElement("upperValue");
+			aElement.addAttribute("value", tempProperty.getValue());
+		}
 		tempProperty = pProperties.get("midLabel");
 		if( tempProperty != null && tempProperty.getValue() != "")
 		{
-			Element aElement = curElement.addElement("midLabel");
+			Element aElement = curElement.addElement("relationshipName");
 			aElement.addAttribute("value", tempProperty.getValue());
 		}
 	}

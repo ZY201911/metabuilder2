@@ -57,4 +57,13 @@ public class Property {
 		}
 		return resultArrayList;
 	}
+	
+	public ArrayList<String> splitAsLiterals() {
+		ArrayList<String> resultArrayList = new ArrayList<>();
+		String[] strArr = getValue().replace("\n", "").split(";");
+		for(int i = 0; i < strArr.length; i++) {
+			resultArrayList.add(strArr[i]);
+		}
+		return resultArrayList;
+	}
 }

@@ -4,6 +4,11 @@ public class Association extends LabeledRelationship {
 	private boolean uniDirection = false;
 	private boolean biDirection = false;
 	
+	public Association(boolean pUniDirection, boolean pBiDirection) {
+		setUniDirection(pUniDirection);
+		setBiDirection(pBiDirection);
+	}
+	
 	@Override
 	public void buildProperties() {
 		super.buildProperties();

@@ -23,7 +23,7 @@ public class Diagram {
 		result.add(new Package());
 		result.add(new DataType());
 		result.add(new Enumeration());
-		result.add(new Association());
+		result.add(new Association(false, false));
 		result.add(new Generalization());
 		result.add(new Composition());
 		return result;
