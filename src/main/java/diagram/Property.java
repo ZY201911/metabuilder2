@@ -49,17 +49,17 @@ public class Property {
 		ArrayList<Method> resultArrayList = new ArrayList<>();
 		String[] strArr = getValue().replace("\n", "").split(";");
 		for(int i = 0; i < strArr.length; i++) {
-			String[] tmpStrArr = strArr[i].split(":");
+			String[] tmpStrArr = strArr[i].split("\\)");
 			String methodType = "";
 			if(tmpStrArr.length == 2) {
-				methodType = tmpStrArr[1];
+				methodType = tmpStrArr[1].replace(":", "");
 			}
 			else if(tmpStrArr.length >= 2) {
 				for(int j = 1; j < tmpStrArr.length; j++) {
 					methodType += tmpStrArr[j];
 				}
 			}
-			String[] methodNameAndParameters = tmpStrArr[0].replace(")", "").split("\\(");
+			String[] methodNameAndParameters = tmpStrArr[0].split("\\(");
 			String methodName = methodNameAndParameters[0];
 			ArrayList<Attribute> methodParameters = new ArrayList<>();
 			if(methodNameAndParameters.length >= 2) {
