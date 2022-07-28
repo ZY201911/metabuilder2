@@ -9,7 +9,8 @@ public abstract class NamedElement extends Element {
 	private String name = "";
 	private Optional<Package> parent = Optional.empty();
 	private Point position = new Point(0, 0);
-	private ArrayList<Relationship> ownedRelationships = new ArrayList<>();
+	private ArrayList<Relationship> ownedRelationshipsAsStart = new ArrayList<>();
+	private ArrayList<Relationship> ownedRelationshipsAsEnd = new ArrayList<>();
 	
 	@Override
 	public void buildProperties() {
@@ -55,19 +56,31 @@ public abstract class NamedElement extends Element {
 		assert hasParent();
 		parent = Optional.empty();
 	}
-
-	public ArrayList<Relationship> getOwnedRelationships() {
-		return ownedRelationships;
-	}
-
-	public void setOwnedRelationships(ArrayList<Relationship> pOwnedRelationships) {
-		this.ownedRelationships = pOwnedRelationships;
+	
+	public void addOwnedRealtionshipAsStart(Relationship pRelationship) {
+		this.ownedRelationshipsAsStart.add(pRelationship);
 	}
 	
-	public void addOwnedRealtionship(Relationship pRelationship) {
-		this.ownedRelationships.add(pRelationship);
+	public void addOwnedRealtionshipAsEnd(Relationship pRelationship) {
+		this.ownedRelationshipsAsEnd.add(pRelationship);
 	}
-	
+
+	public ArrayList<Relationship> getOwnedRelationshipsAsStart() {
+		return ownedRelationshipsAsStart;
+	}
+
+	public void setOwnedRelationshipsAsStart(ArrayList<Relationship> ownedRelationshipsAsStart) {
+		this.ownedRelationshipsAsStart = ownedRelationshipsAsStart;
+	}
+
+	public ArrayList<Relationship> getOwnedRelationshipsAsEnd() {
+		return ownedRelationshipsAsEnd;
+	}
+
+	public void setOwnedRelationshipsAsEnd(ArrayList<Relationship> ownedRelationshipsAsEnd) {
+		this.ownedRelationshipsAsEnd = ownedRelationshipsAsEnd;
+	}
+
 	@Override
 	public NamedElement clone() {
 		NamedElement clone = (NamedElement)super.clone();

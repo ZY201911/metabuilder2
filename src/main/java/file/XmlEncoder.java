@@ -28,7 +28,6 @@ import org.dom4j.io.XMLWriter;
 
 /**
  * Converts a graph to Xml notation. The notation includes:
- * * The JetUML version
  * * The graph type
  * * An array of NamedElement encodings
  * * An array of relationship encodings
