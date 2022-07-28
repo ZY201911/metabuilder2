@@ -142,13 +142,9 @@ public final class XmlEncoder
 
 	private static void encodeRelationships(AbstractContext pContext, Element curElement)
 	{
-		Element tmpElement = curElement;
 		for( Relationship relationship : pContext.pDiagram().getRelationships() )
 		{
-			curElement = tmpElement;
-			if(relationship.getStart().hasParent()) {
-				curElement = (Element)document.selectSingleNode("//packagedElement[@id='" + pContext.getId(relationship.getStart()) + "']");
-			}
+			curElement = (Element)document.selectSingleNode("//packagedElement[@id='" + pContext.getId(relationship.getStart()) + "']");
 			
 			Element aElement = null;
 			if(relationship instanceof Association) {

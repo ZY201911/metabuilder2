@@ -88,7 +88,7 @@ public class MetaBuilderTest extends ApplicationTest {
 //        release(new MouseButton[] {});
 //    }
     
-//    @Test
+    @Test
 //    @Order(2)
     public void testUseCase() {
     	int useCase_x = 850;
@@ -461,7 +461,7 @@ public class MetaBuilderTest extends ApplicationTest {
     	sleep(5000);
     }
     
-    @Test
+//    @Test
     public void testXmlEncoder() {
     	int padding_x = 20;
     	int padding_y = 10;
