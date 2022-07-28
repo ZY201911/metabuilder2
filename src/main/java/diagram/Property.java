@@ -26,7 +26,20 @@ public class Property {
 		String[] strArr = getValue().replace("\n", "").split(";");
 		for(int i = 0; i < strArr.length; i++) {
 			String[] tmpStrArr = strArr[i].split(":");
-			Attribute aAttribute = new Attribute(tmpStrArr[0], tmpStrArr[1]);
+			Attribute aAttribute = null;
+			if(tmpStrArr.length <= 1) {
+				aAttribute = new Attribute(tmpStrArr[0], "");
+			}
+			else if(tmpStrArr.length == 2) {
+				aAttribute = new Attribute(tmpStrArr[0], tmpStrArr[1]);
+			}
+			else {
+				String secondString = "";
+				for(int j = 1; j < tmpStrArr.length; j++) {
+					secondString += tmpStrArr[j];
+				}
+				aAttribute = new Attribute(tmpStrArr[0], secondString);
+			}
 			resultArrayList.add(aAttribute);
 		}
 		return resultArrayList;
@@ -36,11 +49,22 @@ public class Property {
 		ArrayList<Method> resultArrayList = new ArrayList<>();
 		String[] strArr = getValue().replace("\n", "").split(";");
 		for(int i = 0; i < strArr.length; i++) {
-			String[] tmpStrArr = strArr[i].split("\\):");
-			String methodType = tmpStrArr[1];
-			String[] methodNameAndParameters = tmpStrArr[0].split("\\(");
+			String[] tmpStrArr = strArr[i].split(":");
+			String methodType = "";
+			if(tmpStrArr.length == 2) {
+				methodType = tmpStrArr[1];
+			}
+			else if(tmpStrArr.length >= 2) {
+				for(int j = 1; j < tmpStrArr.length; j++) {
+					methodType += tmpStrArr[j];
+				}
+			}
+			String[] methodNameAndParameters = tmpStrArr[0].replace(")", "").split("\\(");
 			String methodName = methodNameAndParameters[0];
-			ArrayList<Attribute> methodParameters = splitAsAttributesByComma(methodNameAndParameters[1]);
+			ArrayList<Attribute> methodParameters = new ArrayList<>();
+			if(methodNameAndParameters.length >= 2) {
+				methodParameters = splitAsAttributesByComma(methodNameAndParameters[1]);
+			}
 			Method aMethod = new Method(methodType, methodName, methodParameters);
 			resultArrayList.add(aMethod);
 		}
@@ -52,7 +76,20 @@ public class Property {
 		String[] strArr = value.replace("\n", "").split(",");
 		for(int i = 0; i < strArr.length; i++) {
 			String[] tmpStrArr = strArr[i].split(":");
-			Attribute aAttribute = new Attribute(tmpStrArr[0], tmpStrArr[1]);
+			Attribute aAttribute = null;
+			if(tmpStrArr.length <= 1) {
+				aAttribute = new Attribute(tmpStrArr[0], "");
+			}
+			else if(tmpStrArr.length == 2) {
+				aAttribute = new Attribute(tmpStrArr[0], tmpStrArr[1]);
+			}
+			else {
+				String secondString = "";
+				for(int j = 1; j < tmpStrArr.length; j++) {
+					secondString += tmpStrArr[j];
+				}
+				aAttribute = new Attribute(tmpStrArr[0], secondString);
+			}
 			resultArrayList.add(aAttribute);
 		}
 		return resultArrayList;

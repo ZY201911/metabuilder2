@@ -49,7 +49,8 @@ public final class XmlEncoder
 	@SuppressWarnings("static-access")
 	public static void encode(Diagram pDiagram, File pFile) throws FileNotFoundException
 	{
-		
+		document.clearContent();
+		root.clearContent();
   		document.setRootElement(root);
   		
   		//添加属性
@@ -67,11 +68,17 @@ public final class XmlEncoder
   		
   		//将xml输出到控制台
   		FileWriter fileWriter;
+  		FileWriter fileWriter2;
 		try {
 			fileWriter = new FileWriter(pFile);
-			XMLWriter writer = new XMLWriter(fileWriter, format);  
-	        writer.write(document);  
-	        writer.close();
+			XMLWriter writer = new XMLWriter(fileWriter, format);
+			writer.write("");
+			writer.flush();
+			writer.close();
+			fileWriter2 = new FileWriter(pFile);
+			XMLWriter writer2 = new XMLWriter(fileWriter2, format);
+	        writer2.write(document);  
+	        writer2.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

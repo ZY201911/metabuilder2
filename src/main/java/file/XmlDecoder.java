@@ -402,7 +402,7 @@ public final class XmlDecoder {
 				result += tmpAttribute.getValue();
 			}
 			tmpAttribute = ((Element)node).attribute("type");
-			if(tmpAttribute != null) {
+			if(tmpAttribute != null && !tmpAttribute.getValue().equals("")) {
 				result += (":" + tmpAttribute.getValue());
 			}
 			result += ";\n";
@@ -423,7 +423,7 @@ public final class XmlDecoder {
 			String parameterString = joinToAttrStringWithComma(((Element)node).elements());
 			result += "(" + parameterString + ")";
 			tmpAttribute = ((Element)node).attribute("type");
-			if(tmpAttribute != null) {
+			if(tmpAttribute != null && !tmpAttribute.getValue().equals("")) {
 				result += (":" + tmpAttribute.getValue());
 			}
 			result += ";\n";
@@ -442,7 +442,7 @@ public final class XmlDecoder {
 				result += tmpAttribute.getValue();
 			}
 			tmpAttribute = ((Element)node).attribute("type");
-			if(tmpAttribute != null) {
+			if(tmpAttribute != null && !tmpAttribute.getValue().equals("")) {
 				result += (":" + tmpAttribute.getValue());
 			}
 			result += ",";
