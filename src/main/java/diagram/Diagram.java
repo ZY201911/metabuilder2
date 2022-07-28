@@ -157,6 +157,7 @@ public class Diagram {
 	public void addRelationship(Relationship pRelationship)
 	{
 		assert pRelationship != null && pRelationship.getStart() != null && pRelationship.getEnd() != null && pRelationship.getDiagram() != null;
+		pRelationship.getStart().addOwnedRealtionship(pRelationship);
 		relationships.add(pRelationship);
 	}
 	

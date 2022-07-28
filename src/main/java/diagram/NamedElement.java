@@ -1,5 +1,6 @@
 package diagram;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import geom.Point;
@@ -8,6 +9,7 @@ public abstract class NamedElement extends Element {
 	private String name = "";
 	private Optional<Package> parent = Optional.empty();
 	private Point position = new Point(0, 0);
+	private ArrayList<Relationship> ownedRelationships = new ArrayList<>();
 	
 	@Override
 	public void buildProperties() {
@@ -52,6 +54,18 @@ public abstract class NamedElement extends Element {
 	{
 		assert hasParent();
 		parent = Optional.empty();
+	}
+
+	public ArrayList<Relationship> getOwnedRelationships() {
+		return ownedRelationships;
+	}
+
+	public void setOwnedRelationships(ArrayList<Relationship> pOwnedRelationships) {
+		this.ownedRelationships = pOwnedRelationships;
+	}
+	
+	public void addOwnedRealtionship(Relationship pRelationship) {
+		this.ownedRelationships.add(pRelationship);
 	}
 	
 	@Override
