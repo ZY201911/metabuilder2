@@ -71,11 +71,11 @@ public final class XmlDecoder {
 			if(xmiType.equals("BClass")) {
 				BClass bClass = new BClass(false, false);
 				Attribute tmpAttribute = curElement.attribute("isAbstract");
-				if(tmpAttribute != null && tmpAttribute.getValue() == "true") {
+				if(tmpAttribute != null && tmpAttribute.getValue().equals("true")) {
 					bClass.setIsAbstract(true);
 				}
 				tmpAttribute = curElement.attribute("isInterface");
-				if(tmpAttribute != null && tmpAttribute.getValue() == "true") {
+				if(tmpAttribute != null && tmpAttribute.getValue().equals("true")) {
 					bClass.setIsInterface(true);
 				}
 				tmpAttribute = curElement.attribute("x");
@@ -167,11 +167,11 @@ public final class XmlDecoder {
 			if(xmiType.equals("BClass")) {
 				BClass bClass = new BClass(false, false);
 				Attribute tmpAttribute = childElement.attribute("isAbstract");
-				if(tmpAttribute != null && tmpAttribute.getValue() == "true") {
+				if(tmpAttribute != null && tmpAttribute.getValue().equals("true")) {
 					bClass.setIsAbstract(true);
 				}
 				tmpAttribute = childElement.attribute("isInterface");
-				if(tmpAttribute != null && tmpAttribute.getValue() == "true") {
+				if(tmpAttribute != null && tmpAttribute.getValue().equals("true")) {
 					bClass.setIsInterface(true);
 				}
 				tmpAttribute = childElement.attribute("x");

@@ -99,7 +99,7 @@ public final class XmlEncoder
 			Element aElement = curElement.addElement("packagedElement");
 			aElement.addAttribute("xmi:type", pNamedElement.getClass().getSimpleName());
 			properties2Attr(pNamedElement.getProperties(), aElement);
-			abstractAndInterface(pNamedElement, curElement);
+			abstractAndInterface(pNamedElement, aElement);
 			aElement.addAttribute("id", pContext.getId(pNamedElement) + "");
 			aElement.addAttribute("x", pNamedElement.getPosition().getX() + "");
 			aElement.addAttribute("y", pNamedElement.getPosition().getY() + "");
@@ -118,7 +118,7 @@ public final class XmlEncoder
 				curElement.addAttribute("isAbstract", "true");
 			}
 			else if(((BClass)pNamedElement).getIsInterface()) {
-				curElement.addAttribute("inInterface", "true");
+				curElement.addAttribute("isInterface", "true");
 			}
 		}
 	}
@@ -128,7 +128,7 @@ public final class XmlEncoder
 		Element aElement = curElement.addElement("packagedElement");
 		aElement.addAttribute("xmi:type", pNamedElement.getClass().getSimpleName());
 		properties2Attr(pNamedElement.getProperties(), aElement);
-		abstractAndInterface(pNamedElement, curElement);
+		abstractAndInterface(pNamedElement, aElement);
 		aElement.addAttribute("id", pContext.getId(pNamedElement) + "");
 		aElement.addAttribute("x", pNamedElement.getPosition().getX() + "");
 		aElement.addAttribute("y", pNamedElement.getPosition().getY() + "");
