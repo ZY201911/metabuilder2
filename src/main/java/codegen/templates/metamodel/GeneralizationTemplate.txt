@@ -1,0 +1,10 @@
+package metabuilder.#(metamodelName).metamodel;
+
+import metabuilder.diagram;
+
+public
+ class #("GeneralizationEdgeFrom" + pGeneralizationEdge.getStart().getName() + "To" + pGeneralizationEdge.getEnd().getName()) {
+    Node startNode = #(pGeneralizationEdge.getStart());
+    Node endNoe = #(pGeneralizationEdge.getEnd());
+    Diagram aDiagram = #(pGeneralizationEdge.getDiagram());
+}

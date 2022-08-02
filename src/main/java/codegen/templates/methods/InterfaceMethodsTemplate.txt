@@ -1,0 +1,13 @@
+package metabuilder.#(metamodelName).metamodel;
+
+import metabuilder.diagram;
+
+public
+ interface #(pInterface.getName())
+#if(pInterface.implementsInterface()!=null)
+ implements #(pInterface.implementsInterface.getName()) {
+ 	//methods
+    #for(method : pInterfaceNode.methodsArray)
+    #('public ' + method);
+    #end
+}

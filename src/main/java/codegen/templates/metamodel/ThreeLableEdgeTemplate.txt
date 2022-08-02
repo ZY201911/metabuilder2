@@ -1,0 +1,13 @@
+package metabuilder.#(metamodelName).metamodel;
+
+import metabuilder.diagram;
+
+public
+ class #("Edge" + pThreeLableEdge.getStartLabel() + pThreeLableEdge.getMiddleLabel() + pThreeLableEdge.getEndLabel()) {
+    String startLable = #(pThreeLableEdge.getStartLabel());
+    String middleLabel = #(pThreeLableEdge.getMiddleLabel());
+    String endLable = #(pThreeLableEdge.getEndLabel());
+    Node startNode = #(pThreeLableEdge.getStart());
+    Node endNoe = #(pThreeLableEdge.getEnd());
+    Diagram aDiagram = #(pThreeLableEdge.getDiagram());
+}

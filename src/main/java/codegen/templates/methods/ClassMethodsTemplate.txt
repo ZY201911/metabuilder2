@@ -1,0 +1,41 @@
+package metabuilder.#(metamodelName).metamodel;
+
+import metabuilder.diagram;
+
+public
+#if(pClass.getIsAbstract())
+ abstract
+#end
+ class #(pClass.getName())
+#if(pClass.extendsClass()!=null)
+ extends #(pClass.extendsClass.getName())
+#end
+#if(pClass.implementsInterface()!=null)
+ implements #(pClass.implementsInterface.getName()) {
+ 	//attributes
+    #for(attr : pClassNode.attributesArray)
+    #('protected ' + attr);
+    #end
+    
+    //methods
+    #for(method : pInterfaceNode.methodsArray)
+    #('public ' + method);
+    #end
+
+    //getter
+    #(String[] attrSeg = new String())
+    #for(attr : pClassNode.attributesArray)
+    #(attrSeg = attr.split("\s+"), 2)
+    #('public ' + attrSeg[0] + ' get' + attrSeg[1] + '() '){
+        return #(attrSeg[1]);
+    }
+    #end
+
+    //setter
+    #for(attr : pClassNode.attributesArray)
+    #(attrSeg = attr.split("\s+"), 2)
+    #('public void set' + attrSeg[1] + '(' + attrSeg[0] + 'pNewValue)'){
+        #(attrSeg[1] + ' = ' + 'pNewValue');
+    }
+    #end
+}

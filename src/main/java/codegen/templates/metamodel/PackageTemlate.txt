@@ -1,0 +1,9 @@
+package metabuilder.#(metamodelName).metamodel;
+
+import metabuilder.diagram;
+
+public
+ class #(pPackage.getName()) {
+    ArrayList<Node> aContainedNodes = #(pPackage.getChildren());
+    Optional<Node> aContainer = #(pPackage.getParent());
+}
